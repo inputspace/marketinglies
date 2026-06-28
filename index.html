@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,21 +11,95 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+:root {
+  --bg: #f7f7f5;
+  --bg-hover: #f0f0ed;
+  --text-primary: #111111;
+  --text-secondary: #999;
+  --text-muted: #bbb;
+  --text-index: #ccc;
+  --text-cat: #ccc;
+  --border: #e4e4e0;
+  --border-header: #e0e0db;
+  --border-entry: #ebebе8;
+  --accent: #e02020;
+  --accent-bg: rgba(224,32,32,0.06);
+  --filter-color: #aaa;
+  --filter-border: #ddd;
+  --footer-url: #bbb;
+  --submit-color: #aaa;
+  --submit-border: #ddd;
+  --meta-divider: #ddd;
+  --meta-right: #bbb;
+}
+
+[data-theme="dark"] {
+  --bg: #0a0a0a;
+  --bg-hover: #0d0d0d;
+  --text-primary: #d8d8d8;
+  --text-secondary: #555;
+  --text-muted: #333;
+  --text-index: #2a2a2a;
+  --text-cat: #2e2e2e;
+  --border: #1e1e1e;
+  --border-header: #1e1e1e;
+  --border-entry: #131313;
+  --accent: #ff3b3b;
+  --accent-bg: rgba(255,59,59,0.05);
+  --filter-color: #555;
+  --filter-border: #1e1e1e;
+  --footer-url: #2a2a2a;
+  --submit-color: #333;
+  --submit-border: #1e1e1e;
+  --meta-divider: #1e1e1e;
+  --meta-right: #444;
+}
+
 html, body {
   font-family: 'JetBrains Mono', monospace;
-  background: #0a0a0a;
-  color: #c8c8c8;
+  background: var(--bg);
+  color: var(--text-primary);
   min-height: 100vh;
+  transition: background 0.2s, color 0.2s;
 }
 
 .ml-root {
   max-width: 860px;
   margin: 0 auto;
-  padding: 4rem 2rem 6rem;
+  padding: 3rem 2rem 6rem;
+}
+
+.ml-topbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.ml-toggle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--submit-color);
+  border: 1px solid var(--submit-border);
+  background: transparent;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.ml-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+.ml-toggle-icon {
+  font-size: 12px;
+  line-height: 1;
 }
 
 .ml-header {
-  border-bottom: 1px solid #1e1e1e;
+  border-bottom: 1px solid var(--border-header);
   padding-bottom: 2rem;
   margin-bottom: 3rem;
 }
@@ -34,7 +108,7 @@ html, body {
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.18em;
-  color: #ff3b3b;
+  color: var(--accent);
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
@@ -42,7 +116,7 @@ html, body {
 .ml-h1 {
   font-size: 28px;
   font-weight: 700;
-  color: #f0f0f0;
+  color: var(--text-primary);
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
@@ -50,7 +124,7 @@ html, body {
 .ml-meta {
   margin-top: 1rem;
   font-size: 11px;
-  color: #444;
+  color: var(--meta-right);
   letter-spacing: 0.05em;
   display: flex;
   gap: 2rem;
@@ -58,7 +132,8 @@ html, body {
   flex-wrap: wrap;
 }
 
-.ml-meta span { color: #ff3b3b; }
+.ml-meta .accent { color: var(--accent); }
+.ml-meta .divider { color: var(--meta-divider); }
 
 .ml-filter-row {
   display: flex;
@@ -73,15 +148,15 @@ html, body {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 5px 12px;
-  border: 1px solid #1e1e1e;
+  border: 1px solid var(--filter-border);
   background: transparent;
-  color: #555;
+  color: var(--filter-color);
   cursor: pointer;
   transition: all 0.15s;
 }
 
-.ml-filter:hover { border-color: #333; color: #888; }
-.ml-filter.active { border-color: #ff3b3b; color: #ff3b3b; background: rgba(255,59,59,0.05); }
+.ml-filter:hover { border-color: var(--text-secondary); color: var(--text-secondary); }
+.ml-filter.active { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
 
 .ml-list { list-style: none; }
 
@@ -90,23 +165,21 @@ html, body {
   grid-template-columns: 48px 1fr auto;
   gap: 0 1.5rem;
   padding: 18px 0;
-  border-bottom: 1px solid #131313;
+  border-bottom: 1px solid var(--border-entry);
   cursor: default;
   transition: background 0.1s;
-  position: relative;
   align-items: center;
 }
 
-.ml-entry:hover { background: #0d0d0d; }
+.ml-entry:hover { background: var(--bg-hover); }
 
 .ml-entry:hover .ml-stamp {
   opacity: 1;
-  transform: rotate(-4deg);
 }
 
 .ml-index {
   font-size: 10px;
-  color: #2a2a2a;
+  color: var(--text-index);
   font-weight: 500;
   letter-spacing: 0.05em;
   text-align: right;
@@ -118,7 +191,7 @@ html, body {
 .ml-lie {
   font-size: 14px;
   font-weight: 400;
-  color: #d8d8d8;
+  color: var(--text-primary);
   line-height: 1.5;
   letter-spacing: 0.01em;
 }
@@ -128,7 +201,7 @@ html, body {
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: #2e2e2e;
+  color: var(--text-cat);
   margin-top: 4px;
 }
 
@@ -136,11 +209,11 @@ html, body {
   font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.2em;
-  color: #ff3b3b;
-  border: 1px solid #ff3b3b;
+  color: var(--accent);
+  border: 1px solid var(--accent);
   padding: 2px 6px;
   opacity: 0;
-  transition: opacity 0.15s, transform 0.15s;
+  transition: opacity 0.15s;
   user-select: none;
   text-transform: uppercase;
   transform: rotate(-4deg);
@@ -149,17 +222,17 @@ html, body {
 
 .ml-count {
   font-size: 10px;
-  color: #2a2a2a;
+  color: var(--text-muted);
   letter-spacing: 0.08em;
   margin-bottom: 2rem;
 }
 
-.ml-count span { color: #ff3b3b; }
+.ml-count span { color: var(--accent); }
 
 .ml-footer {
   margin-top: 4rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #1a1a1a;
+  border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -169,7 +242,7 @@ html, body {
 
 .ml-footer-left {
   font-size: 10px;
-  color: #2a2a2a;
+  color: var(--footer-url);
   letter-spacing: 0.08em;
 }
 
@@ -178,8 +251,8 @@ html, body {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #333;
-  border: 1px solid #1e1e1e;
+  color: var(--submit-color);
+  border: 1px solid var(--submit-border);
   background: transparent;
   padding: 6px 14px;
   cursor: pointer;
@@ -188,10 +261,10 @@ html, body {
   display: inline-block;
 }
 
-.ml-submit:hover { color: #ff3b3b; border-color: #ff3b3b; }
+.ml-submit:hover { color: var(--accent); border-color: var(--accent); }
 
 @media (max-width: 600px) {
-  .ml-root { padding: 2.5rem 1.25rem 4rem; }
+  .ml-root { padding: 2rem 1.25rem 4rem; }
   .ml-h1 { font-size: 22px; }
   .ml-entry { grid-template-columns: 36px 1fr; }
   .ml-stamp { display: none; }
@@ -200,13 +273,21 @@ html, body {
 </head>
 <body>
 <div class="ml-root">
+
+  <div class="ml-topbar">
+    <button class="ml-toggle" id="themeToggle" onclick="toggleTheme()">
+      <span class="ml-toggle-icon" id="toggleIcon">◑</span>
+      <span id="toggleLabel">Dark mode</span>
+    </button>
+  </div>
+
   <header class="ml-header">
     <p class="ml-title">Documented</p>
     <h1 class="ml-h1">Marketing Lies</h1>
     <div class="ml-meta">
-      <span>A plain list. No commentary.</span>
-      <span style="color:#1e1e1e">|</span>
-      <span style="color:#444">Updated continuously</span>
+      <span class="accent">A plain list. No commentary.</span>
+      <span class="divider">|</span>
+      <span>Updated continuously</span>
     </div>
   </header>
 
@@ -252,10 +333,18 @@ const lies = [
 
 const cats = ['All', ...new Set(lies.map(l => l.cat))];
 let active = 'All';
+let isDark = false;
 
 const filtersEl = document.getElementById('filters');
 const listEl = document.getElementById('list');
 const countEl = document.getElementById('count');
+
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('toggleLabel').textContent = isDark ? 'Light mode' : 'Dark mode';
+  document.getElementById('toggleIcon').textContent = isDark ? '○' : '◑';
+}
 
 function render() {
   const filtered = active === 'All' ? lies : lies.filter(l => l.cat === active);
