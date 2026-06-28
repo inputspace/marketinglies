@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Lies</title>
+<meta name="description" content="A plain list of marketing lies. No commentary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'JetBrains Mono', monospace;
+  background: #0a0a0a;
+  color: #c8c8c8;
+  min-height: 100vh;
+}
+
+.ml-root {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+.ml-header {
+  border-bottom: 1px solid #1e1e1e;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.ml-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: #ff3b3b;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.ml-h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f0f0f0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ml-meta {
+  margin-top: 1rem;
+  font-size: 11px;
+  color: #444;
+  letter-spacing: 0.05em;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ml-meta span { color: #ff3b3b; }
+
+.ml-filter-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.ml-filter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid #1e1e1e;
+  background: transparent;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.ml-filter:hover { border-color: #333; color: #888; }
+.ml-filter.active { border-color: #ff3b3b; color: #ff3b3b; background: rgba(255,59,59,0.05); }
+
+.ml-list { list-style: none; }
+
+.ml-entry {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: 0 1.5rem;
+  padding: 18px 0;
+  border-bottom: 1px solid #131313;
+  cursor: default;
+  transition: background 0.1s;
+  position: relative;
+  align-items: center;
+}
+
+.ml-entry:hover { background: #0d0d0d; }
+
+.ml-entry:hover .ml-stamp {
+  opacity: 1;
+  transform: rotate(-4deg);
+}
+
+.ml-index {
+  font-size: 10px;
+  color: #2a2a2a;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-align: right;
+  user-select: none;
+}
+
+.ml-content { min-width: 0; }
+
+.ml-lie {
+  font-size: 14px;
+  font-weight: 400;
+  color: #d8d8d8;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+.ml-cat {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #2e2e2e;
+  margin-top: 4px;
+}
+
+.ml-stamp {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #ff3b3b;
+  border: 1px solid #ff3b3b;
+  padding: 2px 6px;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  user-select: none;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+  white-space: nowrap;
+}
+
+.ml-count {
+  font-size: 10px;
+  color: #2a2a2a;
+  letter-spacing: 0.08em;
+  margin-bottom: 2rem;
+}
+
+.ml-count span { color: #ff3b3b; }
+
+.ml-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #1a1a1a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ml-footer-left {
+  font-size: 10px;
+  color: #2a2a2a;
+  letter-spacing: 0.08em;
+}
+
+.ml-submit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #333;
+  border: 1px solid #1e1e1e;
+  background: transparent;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.ml-submit:hover { color: #ff3b3b; border-color: #ff3b3b; }
+
+@media (max-width: 600px) {
+  .ml-root { padding: 2.5rem 1.25rem 4rem; }
+  .ml-h1 { font-size: 22px; }
+  .ml-entry { grid-template-columns: 36px 1fr; }
+  .ml-stamp { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="ml-root">
+  <header class="ml-header">
+    <p class="ml-title">Documented</p>
+    <h1 class="ml-h1">Marketing Lies</h1>
+    <div class="ml-meta">
+      <span>A plain list. No commentary.</span>
+      <span style="color:#1e1e1e">|</span>
+      <span style="color:#444">Updated continuously</span>
+    </div>
+  </header>
+
+  <div class="ml-filter-row" id="filters"></div>
+  <p class="ml-count" id="count"></p>
+  <ul class="ml-list" id="list"></ul>
+
+  <footer class="ml-footer">
+    <span class="ml-footer-left">marketinglies.netlify.app</span>
+    <a class="ml-submit" href="mailto:you@youremail.com?subject=Marketing Lie Submission">+ Submit a lie →</a>
+  </footer>
+</div>
+
+<script>
+const lies = [
+  { text: "10,000 steps a day is the scientifically recommended target", cat: "Health" },
+  { text: "Breakfast is the most important meal of the day", cat: "Health" },
+  { text: "You need to drink 8 glasses of water a day", cat: "Health" },
+  { text: "We only use 10% of our brain", cat: "Health" },
+  { text: "Listerine invented bad breath as a medical condition", cat: "Health" },
+  { text: "Hair grows back thicker after shaving", cat: "Health" },
+  { text: "A diamond is forever — and should cost 2 months' salary", cat: "Lifestyle" },
+  { text: "De Beers invented the engagement ring as a romantic tradition in 1938", cat: "Lifestyle" },
+  { text: "You must go to college to succeed", cat: "Lifestyle" },
+  { text: "Fresh is always better than frozen", cat: "Food" },
+  { text: "Milk builds strong bones", cat: "Food" },
+  { text: "Margarine is healthier than butter", cat: "Food" },
+  { text: "Free-range eggs are meaningfully more ethical", cat: "Food" },
+  { text: "Natural flavors are better than artificial ones", cat: "Food" },
+  { text: "Domain registrars advertise ₹99/year — but only if you pay 3 years upfront", cat: "Tech" },
+  { text: "Incognito mode makes you anonymous online", cat: "Tech" },
+  { text: "Free apps cost nothing", cat: "Tech" },
+  { text: "Your antivirus software is keeping you safe", cat: "Tech" },
+  { text: "Credit cards give you free rewards", cat: "Finance" },
+  { text: "Insurance companies are on your side", cat: "Finance" },
+  { text: "Organic products are always pesticide-free", cat: "Beauty" },
+  { text: "You need an 8-step skincare routine", cat: "Beauty" },
+  { text: "Collagen creams rebuild your skin's collagen", cat: "Beauty" },
+  { text: "You need to wash your hair daily", cat: "Beauty" },
+  { text: "Detox teas cleanse your liver", cat: "Wellness" },
+  { text: "Superfoods are a scientifically defined category", cat: "Wellness" },
+];
+
+const cats = ['All', ...new Set(lies.map(l => l.cat))];
+let active = 'All';
+
+const filtersEl = document.getElementById('filters');
+const listEl = document.getElementById('list');
+const countEl = document.getElementById('count');
+
+function render() {
+  const filtered = active === 'All' ? lies : lies.filter(l => l.cat === active);
+  countEl.innerHTML = 'Showing <span>' + filtered.length + '</span> of ' + lies.length + ' entries';
+  listEl.innerHTML = filtered.map((l, i) =>
+    '<li class="ml-entry">' +
+      '<span class="ml-index">' + String(i + 1).padStart(2, '0') + '</span>' +
+      '<div class="ml-content">' +
+        '<p class="ml-lie">' + l.text + '</p>' +
+        '<p class="ml-cat">' + l.cat + '</p>' +
+      '</div>' +
+      '<span class="ml-stamp">Debunked</span>' +
+    '</li>'
+  ).join('');
+}
+
+filtersEl.innerHTML = cats.map(c =>
+  '<button class="ml-filter' + (c === 'All' ? ' active' : '') + '" onclick="setFilter(\'' + c + '\')">' + c + '</button>'
+).join('');
+
+function setFilter(cat) {
+  active = cat;
+  document.querySelectorAll('.ml-filter').forEach(function(b) {
+    b.classList.toggle('active', b.textContent === cat);
+  });
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
