@@ -10,277 +10,65 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  --bg: #f7f7f5;
-  --bg-hover: #f0f0ed;
-  --text-primary: #111111;
-  --text-secondary: #999;
-  --text-muted: #bbb;
-  --text-index: #ccc;
-  --text-cat: #ccc;
-  --border: #e4e4e0;
-  --border-header: #e0e0db;
-  --border-entry: #ebebе8;
-  --accent: #e02020;
-  --accent-bg: rgba(224,32,32,0.06);
-  --filter-color: #aaa;
-  --filter-border: #ddd;
-  --footer-url: #bbb;
-  --submit-color: #aaa;
-  --submit-border: #ddd;
-  --meta-divider: #ddd;
-  --meta-right: #bbb;
+  --bg: #f7f7f5; --bg-hover: #f0f0ed; --text-primary: #111111;
+  --text-index: #ccc; --text-cat: #ccc;
+  --border-header: #e0e0db; --border-entry: #ebebea; --border-footer: #e0e0db;
+  --accent: #e02020; --accent-bg: rgba(224,32,32,0.06);
+  --filter-color: #aaa; --filter-border: #ddd;
+  --footer-url: #bbb; --submit-color: #aaa; --submit-border: #ddd;
+  --meta-right: #bbb; --meta-divider: #ddd; --count-color: #bbb;
 }
-
 [data-theme="dark"] {
-  --bg: #0a0a0a;
-  --bg-hover: #0d0d0d;
-  --text-primary: #d8d8d8;
-  --text-secondary: #555;
-  --text-muted: #333;
-  --text-index: #2a2a2a;
-  --text-cat: #2e2e2e;
-  --border: #1e1e1e;
-  --border-header: #1e1e1e;
-  --border-entry: #131313;
-  --accent: #ff3b3b;
-  --accent-bg: rgba(255,59,59,0.05);
-  --filter-color: #555;
-  --filter-border: #1e1e1e;
-  --footer-url: #2a2a2a;
-  --submit-color: #333;
-  --submit-border: #1e1e1e;
-  --meta-divider: #1e1e1e;
-  --meta-right: #444;
+  --bg: #0a0a0a; --bg-hover: #0d0d0d; --text-primary: #d8d8d8;
+  --text-index: #2a2a2a; --text-cat: #2e2e2e;
+  --border-header: #1e1e1e; --border-entry: #131313; --border-footer: #1a1a1a;
+  --accent: #ff3b3b; --accent-bg: rgba(255,59,59,0.05);
+  --filter-color: #555; --filter-border: #1e1e1e;
+  --footer-url: #2a2a2a; --submit-color: #333; --submit-border: #1e1e1e;
+  --meta-right: #444; --meta-divider: #1e1e1e; --count-color: #2a2a2a;
 }
-
-html, body {
-  font-family: 'JetBrains Mono', monospace;
-  background: var(--bg);
-  color: var(--text-primary);
-  min-height: 100vh;
-  transition: background 0.2s, color 0.2s;
-}
-
-.ml-root {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 3rem 2rem 6rem;
-}
-
-.ml-topbar {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 2.5rem;
-}
-
-.ml-toggle {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--submit-color);
-  border: 1px solid var(--submit-border);
-  background: transparent;
-  padding: 5px 12px;
-  cursor: pointer;
-  transition: all 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
+html, body { font-family: 'JetBrains Mono', monospace; background: var(--bg); color: var(--text-primary); min-height: 100vh; transition: background 0.2s, color 0.2s; }
+.ml-root { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+.ml-topbar { display: flex; justify-content: flex-end; margin-bottom: 2.5rem; }
+.ml-toggle { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--submit-color); border: 1px solid var(--submit-border); background: transparent; padding: 5px 12px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 7px; }
 .ml-toggle:hover { color: var(--accent); border-color: var(--accent); }
-
-.ml-toggle-icon {
-  font-size: 12px;
-  line-height: 1;
-}
-
-.ml-header {
-  border-bottom: 1px solid var(--border-header);
-  padding-bottom: 2rem;
-  margin-bottom: 3rem;
-}
-
-.ml-title {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 1.2rem;
-}
-
-.ml-h1 {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.ml-meta {
-  margin-top: 1rem;
-  font-size: 11px;
-  color: var(--meta-right);
-  letter-spacing: 0.05em;
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
+.ml-header { border-bottom: 1px solid var(--border-header); padding-bottom: 2rem; margin-bottom: 3rem; }
+.ml-title { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 1.2rem; }
+.ml-h1 { font-size: 28px; font-weight: 700; color: var(--text-primary); line-height: 1.2; letter-spacing: -0.02em; }
+.ml-meta { margin-top: 1rem; font-size: 11px; color: var(--meta-right); letter-spacing: 0.05em; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
 .ml-meta .accent { color: var(--accent); }
 .ml-meta .divider { color: var(--meta-divider); }
-
-.ml-filter-row {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 2.5rem;
-  flex-wrap: wrap;
-}
-
-.ml-filter {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border: 1px solid var(--filter-border);
-  background: transparent;
-  color: var(--filter-color);
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.ml-filter:hover { border-color: var(--text-secondary); color: var(--text-secondary); }
+.ml-filter-row { display: flex; gap: 8px; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.ml-filter { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border: 1px solid var(--filter-border); background: transparent; color: var(--filter-color); cursor: pointer; transition: all 0.15s; }
+.ml-filter:hover { border-color: var(--text-index); color: var(--text-index); }
 .ml-filter.active { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
-
 .ml-list { list-style: none; }
-
-.ml-entry {
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
-  gap: 0 1.5rem;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border-entry);
-  cursor: default;
-  transition: background 0.1s;
-  align-items: center;
-}
-
+.ml-entry { display: grid; grid-template-columns: 48px 1fr auto; gap: 0 1.5rem; padding: 18px 0; border-bottom: 1px solid var(--border-entry); transition: background 0.1s; align-items: center; }
 .ml-entry:hover { background: var(--bg-hover); }
-
-.ml-entry:hover .ml-stamp {
-  opacity: 1;
-}
-
-.ml-index {
-  font-size: 10px;
-  color: var(--text-index);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-align: right;
-  user-select: none;
-}
-
+.ml-entry:hover .ml-stamp { opacity: 1; }
+.ml-index { font-size: 10px; color: var(--text-index); font-weight: 500; letter-spacing: 0.05em; text-align: right; user-select: none; }
 .ml-content { min-width: 0; }
-
-.ml-lie {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-primary);
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-}
-
-.ml-cat {
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-cat);
-  margin-top: 4px;
-}
-
-.ml-stamp {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 2px 6px;
-  opacity: 0;
-  transition: opacity 0.15s;
-  user-select: none;
-  text-transform: uppercase;
-  transform: rotate(-4deg);
-  white-space: nowrap;
-}
-
-.ml-count {
-  font-size: 10px;
-  color: var(--text-muted);
-  letter-spacing: 0.08em;
-  margin-bottom: 2rem;
-}
-
+.ml-lie { font-size: 14px; font-weight: 400; color: var(--text-primary); line-height: 1.5; letter-spacing: 0.01em; }
+.ml-cat { font-size: 9px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-cat); margin-top: 4px; }
+.ml-stamp { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; opacity: 0; transition: opacity 0.15s; user-select: none; text-transform: uppercase; transform: rotate(-4deg); white-space: nowrap; }
+.ml-count { font-size: 10px; color: var(--count-color); letter-spacing: 0.08em; margin-bottom: 2rem; }
 .ml-count span { color: var(--accent); }
-
-.ml-footer {
-  margin-top: 4rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.ml-footer-left {
-  font-size: 10px;
-  color: var(--footer-url);
-  letter-spacing: 0.08em;
-}
-
-.ml-submit {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--submit-color);
-  border: 1px solid var(--submit-border);
-  background: transparent;
-  padding: 6px 14px;
-  cursor: pointer;
-  transition: all 0.15s;
-  text-decoration: none;
-  display: inline-block;
-}
-
+.ml-footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border-footer); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.ml-footer-left { font-size: 10px; color: var(--footer-url); letter-spacing: 0.08em; }
+.ml-submit { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--submit-color); border: 1px solid var(--submit-border); background: transparent; padding: 6px 14px; cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block; }
 .ml-submit:hover { color: var(--accent); border-color: var(--accent); }
-
-@media (max-width: 600px) {
-  .ml-root { padding: 2rem 1.25rem 4rem; }
-  .ml-h1 { font-size: 22px; }
-  .ml-entry { grid-template-columns: 36px 1fr; }
-  .ml-stamp { display: none; }
-}
+@media (max-width: 600px) { .ml-root { padding: 2rem 1.25rem 4rem; } .ml-h1 { font-size: 22px; } .ml-entry { grid-template-columns: 36px 1fr; } .ml-stamp { display: none; } }
 </style>
 </head>
 <body>
 <div class="ml-root">
-
   <div class="ml-topbar">
     <button class="ml-toggle" id="themeToggle" onclick="toggleTheme()">
-      <span class="ml-toggle-icon" id="toggleIcon">◑</span>
+      <span id="toggleIcon">◑</span>
       <span id="toggleLabel">Dark mode</span>
     </button>
   </div>
-
   <header class="ml-header">
     <p class="ml-title">Documented</p>
     <h1 class="ml-h1">Marketing Lies</h1>
@@ -290,45 +78,245 @@ html, body {
       <span>Updated continuously</span>
     </div>
   </header>
-
   <div class="ml-filter-row" id="filters"></div>
   <p class="ml-count" id="count"></p>
   <ul class="ml-list" id="list"></ul>
-
   <footer class="ml-footer">
     <span class="ml-footer-left">marketinglies.netlify.app</span>
     <a class="ml-submit" href="mailto:you@youremail.com?subject=Marketing Lie Submission">+ Submit a lie →</a>
   </footer>
 </div>
-
 <script>
 const lies = [
-  { text: "10,000 steps a day is the scientifically recommended target", cat: "Health" },
-  { text: "Breakfast is the most important meal of the day", cat: "Health" },
-  { text: "You need to drink 8 glasses of water a day", cat: "Health" },
+  // HEALTH
+  { text: "10,000 steps a day is the scientifically recommended target (it was a slogan for a Japanese pedometer sold in 1965)", cat: "Health" },
+  { text: "Breakfast is the most important meal of the day (coined by cereal companies to sell morning products)", cat: "Health" },
+  { text: "You need to drink 8 glasses of water a day (no scientific basis; the figure was misread from a 1945 nutrition guide)", cat: "Health" },
   { text: "We only use 10% of our brain", cat: "Health" },
-  { text: "Listerine invented bad breath as a medical condition", cat: "Health" },
-  { text: "Hair grows back thicker after shaving", cat: "Health" },
-  { text: "A diamond is forever — and should cost 2 months' salary", cat: "Lifestyle" },
-  { text: "De Beers invented the engagement ring as a romantic tradition in 1938", cat: "Lifestyle" },
-  { text: "You must go to college to succeed", cat: "Lifestyle" },
-  { text: "Fresh is always better than frozen", cat: "Food" },
-  { text: "Milk builds strong bones", cat: "Food" },
-  { text: "Margarine is healthier than butter", cat: "Food" },
-  { text: "Free-range eggs are meaningfully more ethical", cat: "Food" },
-  { text: "Natural flavors are better than artificial ones", cat: "Food" },
-  { text: "Domain registrars advertise ₹99/year — but only if you pay 3 years upfront", cat: "Tech" },
-  { text: "Incognito mode makes you anonymous online", cat: "Tech" },
-  { text: "Free apps cost nothing", cat: "Tech" },
-  { text: "Your antivirus software is keeping you safe", cat: "Tech" },
-  { text: "Credit cards give you free rewards", cat: "Finance" },
+  { text: "Hair grows back thicker and darker after shaving", cat: "Health" },
+  { text: "Eating carrots improves your eyesight (WWII British military disinformation to hide their radar program)", cat: "Health" },
+  { text: "SPF 100 sunscreen is meaningfully more protective than SPF 50 (the FDA calls the difference inherently misleading)", cat: "Health" },
+  { text: "Sunscreen prevents vitamin D production (studies show no significant difference in vitamin D between sunscreen users and non-users)", cat: "Health" },
+  { text: "A tan is your skin protecting itself (it is your skin's response to DNA damage that has already occurred)", cat: "Health" },
+  { text: "Detox teas cleanse your liver", cat: "Health" },
+  { text: "Superfoods are a scientifically defined category", cat: "Health" },
+  { text: "Energy drinks give you sustained energy (they cause a caffeine spike followed by a crash)", cat: "Health" },
+  { text: "Multivitamins fill nutritional gaps for most healthy adults (multiple large studies show no mortality or disease benefit)", cat: "Health" },
+  { text: "Cracking your knuckles causes arthritis", cat: "Health" },
+  { text: "You need to wait 30 minutes after eating before swimming", cat: "Health" },
+  { text: "Reading in dim light damages your eyesight", cat: "Health" },
+  { text: "Cold weather causes colds (colds are caused by viruses, not temperature)", cat: "Health" },
+  { text: "Antibacterial soap is more effective than regular soap (the FDA banned triclosan from consumer soaps in 2016 citing no evidence of superiority)", cat: "Health" },
+  { text: "Sleeping less is a sign of productivity and strength", cat: "Health" },
+  { text: "You lose most body heat through your head (the head loses heat proportionally to its surface area, same as other body parts)", cat: "Health" },
+  { text: "Humans have five senses", cat: "Health" },
+  { text: "Flossing has strong scientific backing for preventing cavities (a 2016 AP investigation found most studies were low quality)", cat: "Health" },
+  { text: "Brushing teeth without fluoride prevents cavities (a century of advertising; University of Washington research found non-fluoride brushing has no cavity benefit)", cat: "Health" },
+  { text: "Mouthwash cures bad breath (it masks it temporarily; bad breath often originates deeper than the mouth)", cat: "Health" },
+  { text: "Whitening toothpaste whitens teeth (most only remove surface stains; they don't change tooth color)", cat: "Health" },
+
+  // FOOD & DRINK
+  { text: "Fresh produce is always more nutritious than frozen (frozen is often picked and frozen at peak nutrition; fresh may degrade in transit)", cat: "Food & Drink" },
+  { text: "Milk builds strong bones (meta-analyses show no significant fracture reduction from higher dairy consumption)", cat: "Food & Drink" },
+  { text: "Margarine is healthier than butter (trans-fat margarines turned out to be far worse for cardiovascular health)", cat: "Food & Drink" },
+  { text: "Fat is the dietary enemy — not sugar (the Sugar Research Foundation paid Harvard scientists $50,000 to publish this in 1967, shaping US dietary policy for decades)", cat: "Food & Drink" },
+  { text: "Low-fat products are better for weight loss (manufacturers replaced fat with sugar to maintain taste)", cat: "Food & Drink" },
+  { text: "Organic products are always pesticide-free (organic farming permits several pesticides; some are more toxic than synthetic alternatives)", cat: "Food & Drink" },
+  { text: "Free-range eggs are meaningfully more ethical (regulations require only 2 square feet of outdoor access per bird)", cat: "Food & Drink" },
+  { text: "Gluten-free food is healthier for people without celiac disease", cat: "Food & Drink" },
+  { text: "Eating 6 small meals a day boosts metabolism (no peer-reviewed evidence supports this; meal frequency shows no metabolic advantage)", cat: "Food & Drink" },
+  { text: "The food pyramid reflects nutrition science (it was shaped by meat, dairy, and grain lobbying before its 1992 release)", cat: "Food & Drink" },
+  { text: "Natural flavors are better than artificial ones (both are synthesized in labs; 'natural' just means the source molecule came from a natural substance)", cat: "Food & Drink" },
+  { text: "Drinking orange juice at breakfast is healthy (a glass of OJ has as much sugar as a can of soda; the 'drink an orange' campaign was invented by an ad man named Albert Lasker)", cat: "Food & Drink" },
+  { text: "Bottled water is cleaner and safer than tap water in developed countries (Aquafina and Dasani are filtered municipal tap water sold at a 2,000x markup)", cat: "Food & Drink" },
+  { text: "Sports drinks are necessary for hydration during exercise (only relevant for activity exceeding 60–90 minutes; otherwise it's sugar water)", cat: "Food & Drink" },
+  { text: "Brown bread is always healthier than white bread (many brown breads are dyed white bread; check the ingredient list)", cat: "Food & Drink" },
+  { text: "Microwaving food destroys its nutrients (studies show it preserves nutrients better than boiling or frying)", cat: "Food & Drink" },
+  { text: "You should eat less red meat because it causes cancer (the evidence is observational and heavily confounded by lifestyle factors)", cat: "Food & Drink" },
+  { text: "Coffee stunts your growth (no evidence; the myth originated from a grain-based coffee substitute marketing campaign in the early 1900s)", cat: "Food & Drink" },
+  { text: "Alcohol kills brain cells (it impairs communication between neurons; it does not kill them)", cat: "Food & Drink" },
+  { text: "The 5-second rule makes dropped food safe to eat", cat: "Food & Drink" },
+  { text: "Eating turkey makes you sleepy (all proteins contain tryptophan; turkey has no more than chicken)", cat: "Food & Drink" },
+  { text: "Skipping meals helps you lose weight (it typically leads to overeating later and metabolic adaptation)", cat: "Food & Drink" },
+
+  // BEAUTY & HYGIENE
+  { text: "Women's body hair is unhygienic (Gillette invented this norm in 1915 to open a new market after saturating men's razors)", cat: "Beauty & Hygiene" },
+  { text: "You need an 8-step skincare routine", cat: "Beauty & Hygiene" },
+  { text: "Collagen creams rebuild your skin's collagen (collagen molecules are too large to penetrate the skin barrier)", cat: "Beauty & Hygiene" },
+  { text: "You need to wash your hair daily (this was promoted by shampoo companies; daily washing strips natural oils)", cat: "Beauty & Hygiene" },
+  { text: "Halitosis (bad breath) is a serious medical condition requiring daily mouthwash (Listerine invented the word and the condition in the 1920s)", cat: "Beauty & Hygiene" },
+  { text: "Antiperspirant is a medical necessity, not a cosmetic choice", cat: "Beauty & Hygiene" },
+  { text: "Expensive skincare penetrates skin layers better than cheap equivalents", cat: "Beauty & Hygiene" },
+  { text: "Pores open and close with temperature", cat: "Beauty & Hygiene" },
+  { text: "Dry skin causes wrinkles (dehydration temporarily accentuates fine lines; wrinkles are caused by collagen loss, not moisture)", cat: "Beauty & Hygiene" },
+  { text: "You need separate shampoo and conditioner (combination products work just as well for most hair types)", cat: "Beauty & Hygiene" },
+  { text: "Anti-aging creams reverse aging (no over-the-counter product can reverse cellular aging; they can temporarily affect appearance)", cat: "Beauty & Hygiene" },
+  { text: "Hair loss products in advertisements show results typical of users", cat: "Beauty & Hygiene" },
+  { text: "Toothpaste whitens teeth by bleaching enamel (most whitening pastes use abrasives, not bleach; only peroxide-based products change tooth color)", cat: "Beauty & Hygiene" },
+  { text: "Toning the skin with astringents shrinks pores (pore size is genetic and cannot be changed)", cat: "Beauty & Hygiene" },
+  { text: "Hypoallergenic products are allergy-safe (no FDA standard defines 'hypoallergenic'; it is a marketing term)", cat: "Beauty & Hygiene" },
+  { text: "Deodorant causes breast cancer (multiple large studies have found no link between aluminum-based antiperspirants and breast cancer)", cat: "Beauty & Hygiene" },
+
+  // LIFESTYLE & CULTURE
+  { text: "A diamond is forever — and should cost 2 months' salary (De Beers invented both the emotional norm and the price benchmark in 1938)", cat: "Lifestyle & Culture" },
+  { text: "The diamond engagement ring is an ancient romantic tradition (it is a purely commercial invention; De Beers flooded world markets with diamonds in the 1870s and needed to manufacture demand)", cat: "Lifestyle & Culture" },
+  { text: "Father's Day is a heartfelt tradition (invented in 1936 by New York menswear retailers who saw how florists profited from Mother's Day)", cat: "Lifestyle & Culture" },
+  { text: "Blue Monday is the most depressing day of the year (invented by travel company Sky Travel in 2005, based on a fake equation, to sell holidays)", cat: "Lifestyle & Culture" },
+  { text: "Black Friday gets its name from retailers finally 'going into the black' (a retrospective story invented by retailers in the 1980s; the term was originally Philadelphia police slang for post-Thanksgiving crowd chaos)", cat: "Lifestyle & Culture" },
+  { text: "The modern image of Santa Claus — red suit, jolly, bearded — has always existed (it was standardized and popularized by a Coca-Cola ad campaign in 1931)", cat: "Lifestyle & Culture" },
+  { text: "You must go to college to succeed", cat: "Lifestyle & Culture" },
+  { text: "Valentine's Day is an ancient romantic tradition (its commercial form was manufactured by greeting card, chocolate, and flower industries in the 20th century)", cat: "Lifestyle & Culture" },
+  { text: "Buying a home is always better than renting (renting is paying for housing; owning also means maintenance, taxes, insurance, and bank interest — the comparison depends entirely on market and timeline)", cat: "Lifestyle & Culture" },
+  { text: "The wedding dress must be white (Queen Victoria wore white as a personal fashion choice in 1840; the bridal industry converted it into a tradition symbolizing purity)", cat: "Lifestyle & Culture" },
+  { text: "A huge wedding is a sign of love and commitment", cat: "Lifestyle & Culture" },
+  { text: "Engagement ring costs should be kept secret (a De Beers strategy to prevent men from comparing prices and pushing them down)", cat: "Lifestyle & Culture" },
+  { text: "Success looks like busyness (productivity culture was partly manufactured to sell time-management products, planners, and apps)", cat: "Lifestyle & Culture" },
+  { text: "You need a gym membership to get fit", cat: "Lifestyle & Culture" },
+  { text: "Roses are the only appropriate Valentine's Day gift (rose prices are artificially inflated up to 200% around February 14)", cat: "Lifestyle & Culture" },
+  { text: "Mother's Day was always a commercial celebration (Anna Jarvis, who founded it in 1908, spent the rest of her life fighting the commercial version and died penniless trying to cancel it)", cat: "Lifestyle & Culture" },
+
+  // TOBACCO & PHARMA
+  { text: "'More doctors smoke Camels than any other cigarette' — tobacco companies paid doctors to endorse cigarettes as safe in the 1940s and 50s", cat: "Tobacco & Pharma" },
+  { text: "Tobacco companies were unaware cigarettes caused cancer (internal documents revealed they knew from the 1950s and actively suppressed research)", cat: "Tobacco & Pharma" },
+  { text: "Light cigarettes are safer than regular cigarettes (they were designed to fool machine testing; smokers inhale the same or more toxins)", cat: "Tobacco & Pharma" },
+  { text: "Women smoking is a symbol of liberation ('Torches of Freedom' — Edward Bernays engineered this campaign for American Tobacco in 1929 to double their market)", cat: "Tobacco & Pharma" },
+  { text: "OxyContin is non-addictive when used for pain (Purdue Pharma marketed this falsehood; they pleaded guilty in 2007 and paid $635 million in fines)", cat: "Tobacco & Pharma" },
+  { text: "Pain is the fifth vital sign (a pharmaceutical industry campaign that normalized opioid prescribing; coined to expand the OxyContin market)", cat: "Tobacco & Pharma" },
+  { text: "Extended-release opioids are less addictive than immediate-release ones (Purdue's core marketing claim; federal courts found it false)", cat: "Tobacco & Pharma" },
+  { text: "Antidepressants fix a 'chemical imbalance' in the brain (the serotonin theory of depression has not been confirmed; this was pharmaceutical marketing, not established science)", cat: "Tobacco & Pharma" },
+  { text: "Supplements are regulated for safety and efficacy the same way drugs are (in the US, supplements do not need to prove efficacy before sale)", cat: "Tobacco & Pharma" },
+  { text: "Homeopathic remedies are medicine (they are water; no active ingredient remains after standard dilutions)", cat: "Tobacco & Pharma" },
+
+  // ENVIRONMENT
+  { text: "Your personal carbon footprint is the key to solving climate change (the term 'personal carbon footprint' was popularized by BP in a 2004 ad campaign to shift blame from corporations to individuals)", cat: "Environment" },
+  { text: "Recycling plastic reliably reduces environmental damage (less than 9% of all plastic ever produced has been recycled; most recycling streams for plastic are non-functional)", cat: "Environment" },
+  { text: "Individuals littering are the primary cause of plastic pollution (Keep America Beautiful — the campaign that coined 'litterbug' — was secretly funded by Coca-Cola and Dixie Cup)", cat: "Environment" },
+  { text: "Paper bags are always more eco-friendly than plastic bags (a paper bag must be reused 43 times to offset its production footprint)", cat: "Environment" },
+  { text: "Electric cars produce zero emissions (they produce zero tailpipe emissions; their manufacturing and charging grid emissions vary significantly)", cat: "Environment" },
+  { text: "Bamboo products are automatically eco-friendly (bamboo fabric requires chemical-intensive processing; 'bamboo' clothing is often rayon)", cat: "Environment" },
+  { text: "Oat milk and almond milk are always better for the environment than dairy (almond milk uses extremely high volumes of water; the comparison depends on the specific impact metric)", cat: "Environment" },
+  { text: "Greenwashing doesn't exist at scale (a 2021 EU study found 42% of environmental claims from brands were exaggerated, false, or unsubstantiated)", cat: "Environment" },
+
+  // TECH & DIGITAL
+  { text: "Incognito mode makes you anonymous online (it hides your history locally; your ISP, employer, and websites can still track you)", cat: "Tech & Digital" },
+  { text: "Free apps cost nothing (you pay with your data, attention, and behavioral patterns)", cat: "Tech & Digital" },
+  { text: "Domain registrars advertise ₹99/year — only if you pay 3 years upfront; the renewal rate is 10–20x higher", cat: "Tech & Digital" },
+  { text: "Your antivirus software is keeping you fully safe", cat: "Tech & Digital" },
+  { text: "More megapixels means a better camera (sensor size, lens quality, and software processing matter more than megapixel count)", cat: "Tech & Digital" },
+  { text: "You should charge your phone to 100% and drain it to 0% to maintain battery health (modern lithium batteries last longer when kept between 20–80%)", cat: "Tech & Digital" },
+  { text: "Macs don't get viruses (they do; the myth was built on market share, not security superiority)", cat: "Tech & Digital" },
+  { text: "5G is harmful to human health (no peer-reviewed evidence supports this; it operates on non-ionizing radio frequencies)", cat: "Tech & Digital" },
+  { text: "Social media algorithms are neutral (they are explicitly optimized for engagement, which correlates with outrage and polarization)", cat: "Tech & Digital" },
+  { text: "Private browsing protects you from ad tracking (it doesn't; browser fingerprinting and cross-site tracking still work)", cat: "Tech & Digital" },
+  { text: "Deleting an app removes your data from the company's servers", cat: "Tech & Digital" },
+  { text: "More cores always means a faster computer (most everyday software runs on 1–2 cores; more cores help only with specific workloads)", cat: "Tech & Digital" },
+  { text: "The cloud is somewhere out there (it is other people's computers in large warehouses consuming massive amounts of electricity and water)", cat: "Tech & Digital" },
+
+  // FINANCE
+  { text: "Credit cards give you free rewards (merchants pay interchange fees that are passed on to all consumers as higher prices; non-card users subsidize card rewards)", cat: "Finance" },
   { text: "Insurance companies are on your side", cat: "Finance" },
-  { text: "Organic products are always pesticide-free", cat: "Beauty" },
-  { text: "You need an 8-step skincare routine", cat: "Beauty" },
-  { text: "Collagen creams rebuild your skin's collagen", cat: "Beauty" },
-  { text: "You need to wash your hair daily", cat: "Beauty" },
-  { text: "Detox teas cleanse your liver", cat: "Wellness" },
-  { text: "Superfoods are a scientifically defined category", cat: "Wellness" },
+  { text: "Renting is throwing money away (homeownership also incurs mortgage interest, maintenance, taxes, and insurance — often exceeding rent for years)", cat: "Finance" },
+  { text: "You must carry a balance on your credit card to build credit (you build credit by using the card and paying it off in full each month)", cat: "Finance" },
+  { text: "A financial advisor is legally required to act in your best interest (only fiduciaries are; most advisors operate under the lower 'suitability' standard)", cat: "Finance" },
+  { text: "MLM companies are a viable path to wealth (the FTC found that in most MLMs, more than 99% of participants lose money)", cat: "Finance" },
+  { text: "The stock market always goes up in the long run (true for US markets historically; not guaranteed for all markets or timescales)", cat: "Finance" },
+  { text: "You need to be wealthy to start investing (micro-investing apps allow starting with under ₹100)", cat: "Finance" },
+  { text: "Checking your own credit score hurts it (self-checks are 'soft inquiries' and have zero impact on your score)", cat: "Finance" },
+  { text: "Premium bank accounts offer meaningfully better financial security than standard ones", cat: "Finance" },
+  { text: "Payday loans are a short-term financial fix (annualized interest rates often exceed 300–400%)", cat: "Finance" },
+  { text: "Life insurance from your employer is sufficient coverage (employer-provided life insurance typically covers only 1–2x your salary)", cat: "Finance" },
+
+  // FOOD INDUSTRY HISTORY
+  { text: "The Michelin Guide is a neutral culinary authority (it was invented by the Michelin tire company in 1900 to make people drive more and wear out their tires faster)", cat: "Industry History" },
+  { text: "Lightbulbs burn out after ~1,000 hours naturally (the Phoebus Cartel — GE, Philips, Osram — secretly reduced bulb lifespan from 2,500 hours to 1,000 hours in 1925 to increase sales)", cat: "Industry History" },
+  { text: "The 'healthy breakfast' of eggs, bacon, and toast was always a tradition (invented by Edward Bernays in the 1920s on behalf of the pork industry to sell more bacon)", cat: "Industry History" },
+  { text: "The US Food Pyramid is based purely on nutritional science (its original 1992 design was heavily lobbied by meat and dairy industries; the USDA staff nutritionist who opposed the final version was overruled)", cat: "Industry History" },
+  { text: "Planned obsolescence is accidental (it was systematized by the Phoebus Cartel in 1925 and explicitly theorized as a commercial strategy; DuPont deliberately weakened nylon stockings after the originals were too durable)", cat: "Industry History" },
+  { text: "Dry cleaning is necessary for suits and formal wear (most suits can be washed at home; 'dry clean only' labels are often precautionary)", cat: "Industry History" },
+  { text: "Diamonds are rare and inherently valuable (De Beers controlled global supply to manufacture scarcity; diamond stockpiles are vast)", cat: "Industry History" },
+  { text: "The fashion industry's twice-yearly trend cycles are organic (they were manufactured to make clothing obsolete faster and drive purchasing)", cat: "Industry History" },
+  { text: "'New and improved' formulas are always better (studies show consumers prefer the familiar version in blind tests even when they claim to prefer the new one)", cat: "Industry History" },
+
+  // SCIENCE MYTHS MARKETED AS FACT
+  { text: "MSG is dangerous and causes headaches (no double-blind study has confirmed 'Chinese Restaurant Syndrome'; the FDA classifies MSG as generally safe)", cat: "Science" },
+  { text: "You need 8 hours of sleep every night (sleep need varies by individual; 7–9 hours is the adult range, not a universal minimum)", cat: "Science" },
+  { text: "Humans evolved to eat meat every day (anatomical and fossil evidence suggests our evolutionary diet was predominantly plant-based)", cat: "Science" },
+  { text: "IQ is a fixed measure of intelligence (IQ scores can change with education, environment, and time)", cat: "Science" },
+  { text: "Left-brained people are logical; right-brained people are creative (neuroimaging has found no evidence of personality-based hemisphere dominance)", cat: "Science" },
+  { text: "Learning styles (visual, auditory, kinesthetic) should drive how you study (no peer-reviewed evidence supports matching instruction to learning style)", cat: "Science" },
+  { text: "Humans have a dominant hand because of the brain's hemispheres (handedness is partly genetic and far more complex than hemisphere dominance)", cat: "Science" },
+  { text: "Blood is blue inside the body (venous blood is dark red, not blue; veins appear blue through skin due to how light penetrates tissue)", cat: "Science" },
+  { text: "The Great Wall of China is visible from space (it is not; it is too narrow to be seen with the naked eye from low Earth orbit)", cat: "Science" },
+  { text: "Humans evolved from chimpanzees (we share a common ancestor; modern chimps are our evolutionary cousins, not our ancestors)", cat: "Science" },
+  { text: "We are in the middle of a mass extinction (this is accurate, not a myth — but is widely denied in industry-funded communications)", cat: "Science" },
+  { text: "Detox diets remove toxins (your liver and kidneys do this continuously; no supplement accelerates the process)", cat: "Science" },
+  { text: "Alkaline water balances your body's pH (the body tightly regulates blood pH regardless of what you drink; stomach acid neutralizes alkaline water instantly)", cat: "Science" },
+
+  // MARKETING INDUSTRY ITSELF
+  { text: "Black Friday deals are genuinely the year's lowest prices (studies consistently find that 93% of Black Friday prices are matched or beaten during the rest of the year)", cat: "Marketing Industry" },
+  { text: "Sales that end in .99 are a coincidence (the practice dates to the 1880s and was designed to force cashiers to open the register, reducing theft; now exploited as a psychological pricing tool)", cat: "Marketing Industry" },
+  { text: "Limited-time offers are actually time-limited", cat: "Marketing Industry" },
+  { text: "Celebrity endorsements reflect genuine product use or belief", cat: "Marketing Industry" },
+  { text: "'As seen on TV' implies scientific validation", cat: "Marketing Industry" },
+  { text: "Customer reviews on retail platforms are reliable (the FTC estimates 30–40% of online reviews are fake or incentivized)", cat: "Marketing Industry" },
+  { text: "Influencer 'honest reviews' are unsolicited opinions (most are paid partnerships; disclosure requirements are widely violated)", cat: "Marketing Industry" },
+  { text: "A product's list price is its actual value (the 'original price' shown during a sale is often a fictional reference point set to make discounts seem large)", cat: "Marketing Industry" },
+  { text: "Free trials are free (they are designed around conversion psychology; cancellation is deliberately made difficult)", cat: "Marketing Industry" },
+  { text: "Subscription services can be cancelled anytime (legally true, practically designed to be as frictionless to join and as friction-heavy to leave as possible)", cat: "Marketing Industry" },
+  { text: "Awards and certifications on packaging are independently verified (many are self-awarded, purchased, or based on narrow criteria)", cat: "Marketing Industry" },
+  { text: "'Clinically proven' on packaging means FDA approval (it means only that the company ran a study; it reveals nothing about study quality, size, or independence)", cat: "Marketing Industry" },
+  { text: "Loyalty points and miles are worth their advertised value (redemption value is typically far lower than the stated earn rate implies; airlines and banks deliberately inflate the apparent value)", cat: "Marketing Industry" },
+  { text: "Surge pricing is a neutral market mechanism (it is algorithmically engineered to extract maximum willingness to pay, not to balance supply and demand)", cat: "Marketing Industry" },
+
+  // EDUCATION & WORK
+  { text: "A college degree guarantees career success", cat: "Work & Education" },
+  { text: "Private universities provide meaningfully better education than public ones for most students", cat: "Work & Education" },
+  { text: "Your passion should drive your career choice (passion often follows mastery, not precede it; 'follow your passion' advice is linked to worse career outcomes in research)", cat: "Work & Education" },
+  { text: "Hustle culture leads to greater productivity (research consistently links overwork to lower output, higher error rates, and burnout)", cat: "Work & Education" },
+  { text: "The best employees are always the most visible ones (proximity bias in offices means visible workers are rated more highly regardless of output)", cat: "Work & Education" },
+  { text: "MBA degrees pay for themselves quickly (median salary premiums rarely offset tuition at top programs within 5 years for most graduates)", cat: "Work & Education" },
+  { text: "Unpaid internships are a normal and necessary step (they are often illegal under labor law in many countries and disproportionately filter out non-wealthy candidates)", cat: "Work & Education" },
+  { text: "Working from home makes you less productive (multiple large studies show remote workers are equal or more productive than office counterparts)", cat: "Work & Education" },
+
+  // SOCIETY & MEDIA
+  { text: "The news cycle reflects the most important events of the day (it reflects what generates clicks, shares, and emotional engagement)", cat: "Society & Media" },
+  { text: "Social media is free to use (you pay with attention, data, and psychological manipulation)", cat: "Society & Media" },
+  { text: "Viral content is organically discovered (most virality is amplified by algorithmic amplification and paid seeding)", cat: "Society & Media" },
+  { text: "PR statements from companies reflect genuine corporate values", cat: "Society & Media" },
+  { text: "Charity partnerships with brands primarily benefit the charity (cause marketing typically benefits brand perception more than the cause)", cat: "Society & Media" },
+  { text: "Prices in supermarkets are set by supply and demand (they are set by retailer algorithms, promotional calendars, and shrinkflation strategies)", cat: "Society & Media" },
+  { text: "Airport and movie theater prices are high due to high rents (captive audience pricing; studies show identical items cost up to 400% more in captive environments)", cat: "Society & Media" },
+  { text: "Hotel 'rack rates' are real prices (they are inflated reference prices; almost no one pays them)", cat: "Society & Media" },
+  { text: "Children's toys labeled 'educational' meet any specific standard (no regulatory body defines what 'educational' means on packaging)", cat: "Society & Media" },
+  { text: "Premium economy flights are a significantly better experience than economy (the seat pitch difference is often minimal; the pricing difference is rarely proportional)", cat: "Society & Media" },
+  { text: "News is separated from advertising in digital media (native advertising, sponsored content, and algorithmic curation blur the line completely)", cat: "Society & Media" },
+
+  // INDIA SPECIFIC
+  { text: "Fair skin is an indicator of health or attractiveness (a colonial-era myth maintained by a billion-dollar skin-lightening industry)", cat: "India Specific" },
+  { text: "'Ayurvedic' on packaging implies ancient purity (many products use the label while containing synthetic ingredients; regulation is minimal)", cat: "India Specific" },
+  { text: "Gold is a reliable inflation hedge and investment (gold has underperformed equities over most 20+ year periods in India)", cat: "India Specific" },
+  { text: "Real estate in Indian cities always appreciates (many tier-2 city properties have seen negative real returns after accounting for inflation and maintenance)", cat: "India Specific" },
+  { text: "LIC is the safest and best insurance-cum-investment product (most LIC endowment plans return 4–5% annually; term insurance + index funds is almost always superior)", cat: "India Specific" },
+  { text: "Private hospitals charge more because they provide better care (pricing in Indian private hospitals is largely opaque and incentivized by commissions to doctors for referrals)", cat: "India Specific" },
+  { text: "Branded packaged water (Bisleri, Kinley) is significantly purer than boiled tap water in most Indian cities", cat: "India Specific" },
+  { text: "Chyawanprash and herbal tonics significantly boost immunity (most immunity-boosting claims on Indian health products are unregulated marketing)", cat: "India Specific" },
+  { text: "Fairness creams work through active skin-lightening science (most only moisturize or mildly exfoliate; the lightening effects shown in ads are lighting and editing)", cat: "India Specific" },
+  { text: "An engineering or medical degree is the only path to a stable career (a narrative maintained by coaching institutes with direct financial interest in student enrolment)", cat: "India Specific" },
+
+  // MISCELLANEOUS
+  { text: "Power Balance wristbands improve athletic performance (the company paid $57 million in a class action settlement and admitted the claims were false)", cat: "Miscellaneous" },
+  { text: "Homeopathy works beyond placebo (systematic reviews of homeopathy find no effects beyond placebo for any condition)", cat: "Miscellaneous" },
+  { text: "Feng shui products meaningfully improve wellbeing", cat: "Miscellaneous" },
+  { text: "Magnetic therapy products relieve pain (no clinical evidence supports this)", cat: "Miscellaneous" },
+  { text: "Ionic air purifiers clean the air (they produce ozone, which is a lung irritant)", cat: "Miscellaneous" },
+  { text: "Noise-cancelling headphones cancel all noise (they cancel low-frequency continuous noise well; high-frequency and sudden sounds pass through)", cat: "Miscellaneous" },
+  { text: "Luxury goods are priced by production cost (luxury pricing is almost entirely psychological; a Hermès Birkin costs ~$800 to produce and sells for $10,000+)", cat: "Miscellaneous" },
+  { text: "Hotel thread count correlates with sheet comfort (thread count is often manipulated by counting individual threads in multi-ply yarn; 400 TC can feel worse than 200 TC)", cat: "Miscellaneous" },
+  { text: "Diamonds are rare (they are abundant; De Beers maintains scarcity through supply control)", cat: "Miscellaneous" },
+  { text: "Airport tax-free shops offer genuine duty-free savings (prices are often higher than high-street shops even before tax is added)", cat: "Miscellaneous" },
+  { text: "The 'new car smell' is a pleasant natural feature (it is the off-gassing of volatile organic compounds from plastics, adhesives, and upholstery)", cat: "Miscellaneous" },
+  { text: "'Made in Italy' on clothing guarantees Italian manufacture (the label is legal if only the finishing stitch is done in Italy)", cat: "Miscellaneous" },
+  { text: "Press releases are journalism", cat: "Miscellaneous" },
 ];
 
 const cats = ['All', ...new Set(lies.map(l => l.cat))];
@@ -351,7 +339,7 @@ function render() {
   countEl.innerHTML = 'Showing <span>' + filtered.length + '</span> of ' + lies.length + ' entries';
   listEl.innerHTML = filtered.map((l, i) =>
     '<li class="ml-entry">' +
-      '<span class="ml-index">' + String(i + 1).padStart(2, '0') + '</span>' +
+      '<span class="ml-index">' + String(i + 1).padStart(3, '0') + '</span>' +
       '<div class="ml-content">' +
         '<p class="ml-lie">' + l.text + '</p>' +
         '<p class="ml-cat">' + l.cat + '</p>' +
@@ -362,7 +350,7 @@ function render() {
 }
 
 filtersEl.innerHTML = cats.map(c =>
-  '<button class="ml-filter' + (c === 'All' ? ' active' : '') + '" onclick="setFilter(\'' + c + '\')">' + c + '</button>'
+  '<button class="ml-filter' + (c === 'All' ? ' active' : '') + '" onclick="setFilter(\'' + c.replace(/['"]/g, '') + '\')">' + c + '</button>'
 ).join('');
 
 function setFilter(cat) {
